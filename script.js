@@ -17,7 +17,7 @@ function initThreeJS() {
     antialias: true,
   });
 
-  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.position.z = 2.5;
 
@@ -75,9 +75,13 @@ function initThreeJS() {
 
   // --- Animation Loop ---
   const clock = new THREE.Clock();
+  let elapsedTime = 0;
+  let animationId = null;
+
   function animate() {
-    requestAnimationFrame(animate);
-    const elapsedTime = clock.getElapsedTime();
+    animationId = requestAnimationFrame(animate);
+    // Cap the per-frame delta so a long pause (e.g. hidden tab) doesn't jump
+    elapsedTime += Math.min(clock.getDelta(), 0.05);
 
     // Animate particles
     particlesMesh.rotation.x = elapsedTime * 0.05;
@@ -92,6 +96,17 @@ function initThreeJS() {
     renderer.render(scene, camera);
   }
   animate();
+
+  // Pause rendering while the tab is hidden to save CPU/GPU/battery
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    } else if (animationId === null) {
+      clock.getDelta(); // discard time elapsed while hidden so motion stays smooth
+      animate();
+    }
+  });
 
   // Handle Window Resizing
   window.addEventListener("resize", () => {
@@ -118,6 +133,9 @@ function initTypedJS() {
 
 // --- 3. GSAP ANIMATIONS ---
 function initGSAP() {
+  // Register the ScrollTrigger plugin so scroll-based animations work
+  gsap.registerPlugin(ScrollTrigger);
+
   // Tech Orbit Animation (unchanged)
   const icons = gsap.utils.toArray(".tech-icon");
   const orbitRadius = window.innerWidth < 768 ? 80 : 110;
