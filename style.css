@@ -131,6 +131,18 @@ header {
   display: block;
 }
 
+.hero-text .hero-role {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 0.75rem;
+  background: linear-gradient(to right, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 .hero-text .tagline {
   font-size: clamp(1rem, 3vw, 1.5rem);
   font-weight: 300;

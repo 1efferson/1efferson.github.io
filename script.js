@@ -149,9 +149,16 @@ function initGSAP() {
 
   // Main Page Load Animation Timeline
   gsap.set(".hero-text .line", { y: "100%" });
-  gsap.set(["header", ".follow-bar", ".hero-text .tagline", ".profile-image"], {
-    opacity: 0,
-  });
+  gsap.set(
+    [
+      "header",
+      ".follow-bar",
+      ".hero-text .hero-role",
+      ".hero-text .tagline",
+      ".profile-image",
+    ],
+    { opacity: 0 }
+  );
 
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
@@ -161,6 +168,7 @@ function initGSAP() {
     stagger: 0.15,
     delay: 0.5,
   })
+    .to(".hero-text .hero-role", { opacity: 1, duration: 1 }, "-=0.7")
     .to("header", { opacity: 1, duration: 1 }, "-=0.8")
     .to(".follow-bar", { opacity: 1, duration: 1 }, "-=1")
     .to(".hero-text .tagline", { opacity: 1, duration: 1 }, "-=0.5")
