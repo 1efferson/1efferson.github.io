@@ -1,6 +1,6 @@
 # 💼 Jefferson Ampadu — 3D Portfolio Website
 
-✅ Hosted at: https://1efferson.github.io/Portfolio_Website/
+✅ Hosted at: https://1efferson.github.io/
 -------------------------------------------------------------
 
 ![Project Preview](assets/screenshots/homepage.png)
