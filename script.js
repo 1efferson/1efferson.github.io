@@ -285,6 +285,28 @@ function initStatsCountUp() {
   numbers.forEach((n) => observer.observe(n));
 }
 
+// --- 8. PAUSE ORBIT WHEN OFFSCREEN ---
+function initOrbitVisibility() {
+  const showcase = document.querySelector(".skills-showcase");
+  if (!showcase) return;
+
+  // If the user prefers reduced motion the CSS already keeps the ring paused —
+  // don't fight it by toggling play-state back to running.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const animated = showcase.querySelectorAll(".tech-orbit, .tech-icon");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visible = entries[0].isIntersecting;
+      animated.forEach((el) => {
+        el.style.animationPlayState = visible ? "running" : "paused";
+      });
+    },
+    { threshold: 0 }
+  );
+  observer.observe(showcase);
+}
+
 // --- INITIALIZE EVERYTHING ---
 document.addEventListener("DOMContentLoaded", () => {
   initThreeJS();
@@ -293,6 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initHamburger();
   initActiveNav();
   initStatsCountUp();
+  initOrbitVisibility();
 
   // Refresh ScrollTrigger after all animations are set up
   ScrollTrigger.addEventListener("refresh", () => {
