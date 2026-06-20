@@ -136,14 +136,15 @@ function initGSAP() {
   // Register the ScrollTrigger plugin so scroll-based animations work
   gsap.registerPlugin(ScrollTrigger);
 
-  // Tech Orbit Animation (unchanged)
-  const icons = gsap.utils.toArray(".tech-icon");
-  const orbitRadius = window.innerWidth < 768 ? 90 : 130;
-  const duration = 20;
+  // Tech Orbit Animation
+  const wrappers = gsap.utils.toArray(".orbit-wrapper");
+  const icons    = gsap.utils.toArray(".tech-icon");
+  const orbitRadius = window.innerWidth < 768 ? 110 : 155;
+  const duration = 22;
 
-  gsap.set(icons, {
-    x: (i) => orbitRadius * Math.cos(i * ((Math.PI * 2) / icons.length)),
-    y: (i) => orbitRadius * Math.sin(i * ((Math.PI * 2) / icons.length)),
+  gsap.set(wrappers, {
+    x: (i) => orbitRadius * Math.cos(i * ((Math.PI * 2) / wrappers.length)),
+    y: (i) => orbitRadius * Math.sin(i * ((Math.PI * 2) / wrappers.length)),
     scale: 0,
   });
 
@@ -174,23 +175,31 @@ function initGSAP() {
     .to(".hero-ctas", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
     .to(".profile-image", { opacity: 1, duration: 1 }, "-=0.7")
     .to(
-      ".tech-icon",
+      ".orbit-wrapper",
       {
         scale: 1,
         stagger: 0.1,
         duration: 0.8,
         onComplete: () => {
-          // Start orbit animation only after icons appear
-          gsap.to(icons, {
+          // Orbit the wrappers around the centre
+          gsap.to(wrappers, {
             rotation: 360,
             transformOrigin: `-${orbitRadius}px 0px`,
             duration: duration,
             repeat: -1,
             ease: "none",
             stagger: {
-              each: duration / icons.length,
+              each: duration / wrappers.length,
               repeat: -1,
             },
+          });
+
+          // Counter-rotate each icon so they stay upright as they orbit
+          gsap.to(icons, {
+            rotation: -360,
+            duration: duration,
+            repeat: -1,
+            ease: "none",
           });
 
           // Initialize timeline animations AFTER orbit is set up
