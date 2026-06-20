@@ -90,7 +90,8 @@ header {
   transition: all 0.3s ease;
 }
 
-.cta-button a:hover {
+.cta-button a:hover,
+.cta-button a.nav-active {
   background-color: var(--accent);
   color: var(--text-primary);
   transform: translateY(-2px);
@@ -170,12 +171,125 @@ header {
   }
 }
 
+/* Open-to-Work Badge */
+.open-to-work-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.35);
+  color: #22c55e;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.5rem;
+}
+
+.ow-pulse {
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: owPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes owPulse {
+  0%, 100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+  50% { opacity: 0.7; transform: scale(0.85); box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+}
+
+/* Hero CTA Buttons */
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.hero-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+}
+
+.hero-cta-btn.primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 124, 240, 0.3);
+}
+
+.hero-cta-btn.primary:hover {
+  background: #0066cc;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 124, 240, 0.45);
+}
+
+.hero-cta-btn.secondary {
+  background: transparent;
+  color: var(--text-primary);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero-cta-btn.secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 3rem;
+  color: var(--light-gray);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scroll-mouse {
+  width: 22px;
+  height: 36px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.scroll-wheel {
+  width: 3px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 2px;
+  animation: scrollWheel 1.6s ease-in-out infinite;
+}
+
+@keyframes scrollWheel {
+  0% { transform: translateY(0); opacity: 1; }
+  80% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
 /* Skills Showcase */
 .skills-showcase {
   position: relative;
   margin-top: 5vh;
-  width: 180px;
-  height: 180px;
+  width: 230px;
+  height: 230px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -187,8 +301,8 @@ header {
   height: 100%;
   border-radius: 50%;
   overflow: hidden;
-  border: 3px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(0, 124, 240, 0.4);
+  box-shadow: 0 0 35px rgba(0, 124, 240, 0.18), 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
 .profile-image {
@@ -536,10 +650,15 @@ form {
   }
 }
 
+/* Smooth anchor scroll accounting for fixed header */
+html {
+  scroll-padding-top: 80px;
+}
+
 /* About Me Section */
 .about-section {
   min-height: 100vh;
-  padding: 5rem 10%;
+  padding: 5rem 10% 7rem;
   background: rgba(2, 2, 16, 0.015);
   display: flex;
   align-items: center;
@@ -633,7 +752,7 @@ form {
 /* Experiences Section */
 .experiences-section {
   min-height: 100vh;
-  padding: 5rem 10%;
+  padding: 5rem 10% 7rem;
   background: rgba(10, 10, 20, 0);
   position: relative;
 }
@@ -720,6 +839,34 @@ form {
   font-size: 0.8rem;
 }
 
+/* Experience Badges */
+.experience-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+}
+
+.experience-badge.education { background: rgba(34, 197, 94, 0.12); color: #22c55e; }
+.experience-badge.developer { background: rgba(0, 124, 240, 0.15); color: var(--accent); }
+.experience-badge.transition { background: rgba(251, 146, 60, 0.12); color: #fb923c; }
+.experience-badge.science   { background: rgba(168, 85, 247, 0.12); color: #a855f7; }
+
+.experience-period {
+  font-size: 0.82rem;
+  color: var(--light-gray);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 /* Timeline Bullets */
 .experience-item::after {
   content: "";
@@ -781,7 +928,7 @@ form {
 /* Projects Page Styles */
 .projects-container {
   min-height: 100vh;
-  padding: 5rem 10%;
+  padding: 5rem 10% 7rem;
   margin-top: 80px;
 }
 
@@ -890,6 +1037,10 @@ form {
 
   .projects-title {
     font-size: 2.5rem;
+  }
+
+  .scroll-indicator {
+    display: none;
   }
 }
 

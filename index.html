@@ -31,7 +31,7 @@
       "url": "https://1efferson.github.io/",
       "image": "https://1efferson.github.io/assets/photo.jpeg",
       "jobTitle": "Software Developer",
-      "description": "Former biomedical scientist turned software developer, building web and software applications with Python, JavaScript, Three.js, and GSAP.",
+      "description": "Software developer building fast, production-ready web and full-stack applications with Python and JavaScript.",
       "knowsAbout": ["Python", "JavaScript", "Flask", "Web Development", "Software Engineering"],
       "sameAs": [
         "https://github.com/1efferson",
@@ -96,6 +96,11 @@
 
       <!-- Main Content (top layer) -->
       <main class="hero-container">
+        <div class="open-to-work-badge">
+          <span class="ow-pulse"></span>
+          Open to Work
+        </div>
+
         <div class="hero-text">
           <h1>
             <span class="line">Jefferson</span>
@@ -104,6 +109,12 @@
           <p class="hero-role">Creative Developer &amp; Software Engineer</p>
           <div class="tagline">
             <span id="typed-text"></span>
+          </div>
+          <div class="hero-ctas">
+            <a href="#projects" class="hero-cta-btn primary">View My Work</a>
+            <a href="Jefferson_Ampadu_CV.pdf" download class="hero-cta-btn secondary">
+              <i class="fas fa-download"></i> Download CV
+            </a>
           </div>
         </div>
 
@@ -131,6 +142,13 @@
             </div>
           </div>
         </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+          </div>
+          <span>Scroll</span>
+        </div>
       </main>
 
       <!-- About Me Section -->
@@ -139,12 +157,13 @@
           <div class="about-content">
             <h2>About Me</h2>
             <p class="about-text">
-              I'm Jefferson Ampadu, a former biomedical scientist turned
-              software developer. My curiosity and love for solving problems led
-              me from the lab to coding. I now build both web and software
-              applications using tools like Python, JavaScript, Three.js, and
-              GSAP, bringing the same passion for discovery and innovation from
-              science into tech.
+              I'm Jefferson Ampadu, a software developer who builds web and
+              full-stack applications that are fast, functional, and production
+              ready. I specialize in turning ideas into reliable, scalable
+              software, the kind that helps businesses run more efficiently and
+              reach more people online. I care about the craft: clean
+              architecture, precise execution, and shipping things that
+              actually work.
             </p>
 
             <div class="skills-section">
@@ -179,7 +198,7 @@
                     <li><i class="fab fa-git-alt"></i> Git</li>
                     <li><i class="fas fa-database"></i> PostgreSQL</li>
                     <li><i class="fab fa-docker"></i> Docker</li>
-                    <li><i class="fas fa-server"></i> RESTul API</li>
+                    <li><i class="fas fa-server"></i> RESTful API</li>
                   </ul>
                 </div>
               </div>
@@ -190,87 +209,88 @@
 
       <!-- Experiences Section -->
       <section id="experiences" class="experiences-section">
-        <h2 class="experiences-title">Experiences</h2>
+        <h2 class="experiences-title">My Journey</h2>
         <div class="timeline-container">
           <!-- Vertical Timeline Bar -->
           <div class="timeline-bar"></div>
 
-          <!-- Experience Items -->
-           <div class="experience-item left">
+          <!-- Education -->
+          <div class="experience-item left">
             <div class="experience-card">
-              <h3>Code-LMS Platform</h3>
-                <p>
-                Developed a video-based learning management system with course creation,
-                video delivery, Admin, instructor and student roles, secure authentication,
-                role-based access control, and a PostgreSQL-backed data model.
+              <div class="experience-badge education">
+                <i class="fas fa-graduation-cap"></i> Education
+              </div>
+              <h3>Cellusys Academy</h3>
+              <p class="experience-period"><i class="fas fa-calendar-alt"></i> 2024</p>
+              <p>
+                Completed a professional software development programme at Cellusys Academy, gaining structured, industry-grade expertise in full-stack development, modern web technologies, and engineering best practices.
+              </p>
+              <div class="tech-used">
+                <span>Full-Stack Development</span>
+                <span>Professional Training</span>
+                <span>2025 Graduate</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Developer at Cellusys + Freelance -->
+          <div class="experience-item right">
+            <div class="experience-card">
+              <div class="experience-badge developer">
+                <i class="fas fa-laptop-code"></i> Developer
+              </div>
+              <h3>Software Developer — Cellusys</h3>
+              <p class="experience-period"><i class="fas fa-calendar-alt"></i> 2025 – Present</p>
+              <p>
+                Working at Cellusys as a software developer. Alongside that, independently designed and shipped 6+ full-stack applications — from a QR-code attendance PWA with push notifications to an LMS with role-based access — demonstrating end-to-end product delivery.
               </p>
               <div class="tech-used">
                 <span>Flask</span>
                 <span>Python</span>
                 <span>PostgreSQL</span>
-                <span>SQLAlchemy</span>
-                <span>Tailwind CSS</span>
-                <span>Docker</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="experience-item right">
-            <div class="experience-card">
-              <h3>Web-based YouTube downloader</h3>
-              <p>
-                Created a YouTube downloader using yt-dlp to fetch and download public videos with ease.
-              </p>
-              <div class="tech-used">
-                <span> Flask</span>
-                <span>YT-DLP</span>
-                <span>HTML/CSS</span>
                 <span>JavaScript</span>
+                <span>PWA</span>
+                <span>REST APIs</span>
               </div>
             </div>
           </div>
 
+          <!-- Developer growth -->
           <div class="experience-item left">
             <div class="experience-card">
-              <h3>Inventory Management System</h3>
+              <div class="experience-badge transition">
+                <i class="fas fa-chart-line"></i> Growth
+              </div>
+              <h3>Fundamentals First, Always</h3>
+              <p class="experience-period"><i class="fas fa-calendar-alt"></i>Always</p>
               <p>
-                Developed a full-stack inventory solution using Flask with
-                features for tracking, reporting, and analytics.
+                Strong fundamentals are the bedrock of quality software. Every project I build is rooted in a deep understanding of core principles — clean logic, solid data structures, and disciplined architecture — before any framework or tool enters the picture.
               </p>
               <div class="tech-used">
-                <span>Flask</span>
                 <span>Python</span>
-                <span>SQLite</span>
+                <span>JavaScript</span>
+                <span>Flask</span>
+                <span>Three.js</span>
+                <span>GSAP</span>
               </div>
             </div>
           </div>
 
+          <!-- Background -->
           <div class="experience-item right">
             <div class="experience-card">
-              <h3>Voice-Enabled Weather App</h3>
-              <p>
-                Created an interactive weather application with voice
-                recognition and map search functionality.
-              </p>
-              <div class="tech-used">
-                <span> Python</span>
-                <span>PyAudio</span>
-                <span>Tkinter Map View</span>
+              <div class="experience-badge science">
+                <i class="fas fa-microscope"></i> Background
               </div>
-            </div>
-          </div>
-
-          <div class="experience-item left">
-            <div class="experience-card">
-              <h3>E-Library Platform</h3>
+              <h3>Biomedical Scientist</h3>
+              <p class="experience-period"><i class="fas fa-calendar-alt"></i> Prior Career</p>
               <p>
-                Built a digital library system with user authentication, book
-                management, and search features.
+                Grounded in lab-grade precision, analytical rigour, and evidence-based problem solving. Those habits transferred directly into engineering: measure twice, ship clean, debug methodically.
               </p>
               <div class="tech-used">
-                <span>HTML/CSS</span>
-                <span>JavaScript</span>
-                <span>Firebase</span>
+                <span>Research</span>
+                <span>Analytical Methods</span>
+                <span>Problem Solving</span>
               </div>
             </div>
           </div>
@@ -456,7 +476,7 @@
               </p>
               <div class="project-tech">
                 <span>Flask</span>
-                <span>HMTL/CSS</span>
+                <span>HTML/CSS</span>
                 <span>JavaScript</span>
                 <span>YT-DLP</span>
               </div>
@@ -495,12 +515,8 @@
             <a href="https://www.linkedin.com/in/jefferson-ampadu-41497b1b6/" aria-label="LinkedIn"
               ><i class="fab fa-linkedin-in"></i
             ></a>
-            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" aria-label="Dribbble"
-              ><i class="fab fa-dribbble"></i
-            ></a>
           </div>
-          <a href="jefferson_ampadu_cv.pdf" download class="download-cv-btn">
+          <a href="Jefferson_Ampadu_CV.pdf" download class="download-cv-btn">
             <i class="fas fa-download"></i> Download CV
           </a>
         </div>
@@ -546,8 +562,6 @@
           <a href="https://www.linkedin.com/in/jefferson-ampadu-41497b1b6/" aria-label="LinkedIn"
             ><i class="fab fa-linkedin-in"></i
           ></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
       </footer>
     </div>
@@ -565,14 +579,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script type="module" src="script.js"></script>
-    <script>
-      const hamburger = document.getElementById('hamburger');
-      const navLinks = document.getElementById('navLinks');
-
-      hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-      });
-    </script>
-
   </body>
 </html>

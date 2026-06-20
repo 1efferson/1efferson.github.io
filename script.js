@@ -149,6 +149,9 @@ function initGSAP() {
 
   // Main Page Load Animation Timeline
   gsap.set(".hero-text .line", { y: "100%" });
+  gsap.set(".open-to-work-badge", { opacity: 0, y: -15 });
+  gsap.set(".hero-ctas", { opacity: 0, y: 12 });
+  gsap.set(".scroll-indicator", { opacity: 0 });
   gsap.set(
     [
       "header",
@@ -162,17 +165,14 @@ function initGSAP() {
 
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  tl.to(".hero-text .line", {
-    y: "0%",
-    duration: 1.2,
-    stagger: 0.15,
-    delay: 0.5,
-  })
+  tl.to(".open-to-work-badge", { opacity: 1, y: 0, duration: 0.8, delay: 0.2 })
+    .to(".hero-text .line", { y: "0%", duration: 1.2, stagger: 0.15 }, "-=0.5")
     .to(".hero-text .hero-role", { opacity: 1, duration: 1 }, "-=0.7")
     .to("header", { opacity: 1, duration: 1 }, "-=0.8")
     .to(".follow-bar", { opacity: 1, duration: 1 }, "-=1")
     .to(".hero-text .tagline", { opacity: 1, duration: 1 }, "-=0.5")
-    .to(".profile-image", { opacity: 1, duration: 1 }, "-=0.5")
+    .to(".hero-ctas", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
+    .to(".profile-image", { opacity: 1, duration: 1 }, "-=0.7")
     .to(
       ".tech-icon",
       {
@@ -192,13 +192,14 @@ function initGSAP() {
               repeat: -1,
             },
           });
-          
+
           // Initialize timeline animations AFTER orbit is set up
           initTimelineAnimations();
         },
       },
       "-=0.8"
-    );
+    )
+    .to(".scroll-indicator", { opacity: 1, duration: 1 }, "-=0.4");
 }
 
 // --- 4. TIMELINE ANIMATIONS ---
@@ -235,16 +236,64 @@ function initTimelineAnimations() {
   
 }
 
+// --- 5. HAMBURGER MENU ---
+function initHamburger() {
+  const hamburger = document.getElementById("hamburger");
+  const navEl = document.getElementById("navLinks");
+
+  hamburger.addEventListener("click", () => {
+    navEl.classList.toggle("active");
+  });
+
+  // Close menu when any nav link is clicked
+  navEl.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navEl.classList.remove("active");
+    });
+  });
+
+  // Close menu when clicking outside of it
+  document.addEventListener("click", (e) => {
+    if (!navEl.contains(e.target) && !hamburger.contains(e.target)) {
+      navEl.classList.remove("active");
+    }
+  });
+}
+
+// --- 6. ACTIVE NAV HIGHLIGHT ---
+function initActiveNav() {
+  const sections = document.querySelectorAll("#about, #experiences, #projects, #contact");
+  const navBtns = document.querySelectorAll(".cta-button a");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navBtns.forEach((btn) => {
+            btn.classList.toggle("nav-active", btn.getAttribute("href") === `#${id}`);
+          });
+        }
+      });
+    },
+    { threshold: 0.25, rootMargin: "-80px 0px -20% 0px" }
+  );
+
+  sections.forEach((s) => observer.observe(s));
+}
+
 // --- INITIALIZE EVERYTHING ---
 document.addEventListener("DOMContentLoaded", () => {
   initThreeJS();
   initTypedJS();
   initGSAP();
-  
+  initHamburger();
+  initActiveNav();
+
   // Refresh ScrollTrigger after all animations are set up
   ScrollTrigger.addEventListener("refresh", () => {
-    document.querySelectorAll(".experience-item").forEach(item => {
-      item.style.opacity = "1"; // Ensure items are visible before animation
+    document.querySelectorAll(".experience-item").forEach((item) => {
+      item.style.opacity = "1";
     });
   });
   ScrollTrigger.refresh();
