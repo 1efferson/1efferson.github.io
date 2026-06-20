@@ -255,24 +255,33 @@
             </div>
           </div>
 
-          <!-- Developer growth -->
+          <!-- Certification -->
           <div class="experience-item left">
             <div class="experience-card">
-              <div class="experience-badge transition">
-                <i class="fas fa-chart-line"></i> Growth
+              <div class="experience-badge certification">
+                <i class="fas fa-certificate"></i> Certification
               </div>
-              <h3>Fundamentals First, Always</h3>
-              <p class="experience-period"><i class="fas fa-calendar-alt"></i>Always</p>
+              <h3>Software Engineering Certificate</h3>
+              <p class="experience-period"><i class="fas fa-calendar-alt"></i> 2025</p>
               <p>
-                Strong fundamentals are the bedrock of quality software. Every project I build is rooted in a deep understanding of core principles — clean logic, solid data structures, and disciplined architecture — before any framework or tool enters the picture.
+                Completed a formal software engineering certification,
+                validating proficiency in full-stack development, software
+                architecture, and production engineering practices. A second
+                certification will be added shortly.
               </p>
               <div class="tech-used">
-                <span>Python</span>
-                <span>JavaScript</span>
-                <span>Flask</span>
-                <span>Three.js</span>
-                <span>GSAP</span>
+                <span>Full-Stack Development</span>
+                <span>Software Architecture</span>
+                <span>Engineering Practices</span>
               </div>
+              <a
+                href="Software Engineering Certificate.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="cert-view-link"
+              >
+                <i class="fas fa-eye"></i> View Certificate
+              </a>
             </div>
           </div>
 
@@ -299,7 +308,7 @@
 
       <!-- Projects Section -->
       <section id="projects" class="projects-container">
-        <h1 class="projects-title">My Projects</h1>
+        <h2 class="projects-title">My Projects</h2>
         
 
         <div class="projects-grid">
@@ -317,7 +326,8 @@
                   QR-code based attendance platform with passkey (WebAuthn) and
                   Google sign-in, real-time check-ins, scheduled push reminders,
                   and automated Google Sheets export. Runs on a Celery + Redis
-                  async stack as an installable PWA.
+                  async stack as an installable PWA. Actively used by
+                  <strong>300+ users</strong>.
                 </p>
                 <div class="project-tech">
                   <span>Flask</span>
@@ -334,9 +344,52 @@
                   style="pointer-events: none; color: gray"
                   class="project-github"
                   target="_blank"
+                  rel="noopener noreferrer"
                   aria-disabled="true"
                 >
                   <i class="fab fa-github"></i> Private Repository
+                </a>
+              </div>
+            </div>
+
+            <!-- Project: NetDiag -->
+            <div class="project-card">
+              <div class="project-image project-image--code">
+                <div class="placeholder-icons">
+                  <i class="fas fa-network-wired"></i>
+                  <i class="fas fa-server"></i>
+                  <i class="fas fa-desktop"></i>
+                </div>
+                <span class="placeholder-label">Network Ops Platform</span>
+              </div>
+              <div class="project-content">
+                <h3>NetDiag — Network Diagnostic Platform</h3>
+                <p>
+                  Full-stack IT ops tool for monitoring and diagnosing network
+                  health across Windows, macOS, and Linux. Lightweight agents
+                  collect IP/DNS/MAC/ARP data and run subnet scans via nmap,
+                  shipping reports to a FastAPI backend. Uses
+                  <strong>Claude AI</strong> to generate plain-English fault
+                  explanations. Ops console lets admins approve devices,
+                  view per-machine diagnostics, and detect isolated machines
+                  via peer correlation.
+                </p>
+                <div class="project-tech">
+                  <span>Python</span>
+                  <span>FastAPI</span>
+                  <span>Vue 3</span>
+                  <span>Pinia</span>
+                  <span>Tailwind v4</span>
+                  <span>Nmap</span>
+                  <span>Claude AI</span>
+                </div>
+                <a
+                  href="https://github.com/1efferson/network-diagnostic"
+                  class="project-github"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <i class="fab fa-github"></i> View on GitHub
                 </a>
               </div>
             </div>
@@ -367,6 +420,7 @@
                   href="https://github.com/1efferson/Code-LMS"
                   class="project-github"
                   target="_blank"
+                  rel="noopener noreferrer"
                 >
                   <i class="fab fa-github"></i> View on GitHub
                 </a>
@@ -393,10 +447,11 @@
                 <span>SQL</span>
               </div>
               <a
-                href="https://github.com/username/inventory-system"
+                href="https://github.com/1efferson/inventory-system"
                 style="pointer-events: none; color: gray"
                 class="project-github"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-disabled="true"
               >
                 <i class="fab fa-github"></i> Private Repository
@@ -427,6 +482,7 @@
                 href="https://github.com/1efferson/weatherapp"
                 class="project-github"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <i class="fab fa-github"></i> View on GitHub
               </a>
@@ -450,10 +506,11 @@
                 <span>Firebase</span>
               </div>
               <a
-                href="https://github.com/username/e-library"
+                href="https://github.com/1efferson/e-library"
                 style="pointer-events: none; color: gray"
                 class="project-github"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-disabled="true"
               >
                 <i class="fab fa-github"></i> Private Repository 
@@ -484,6 +541,7 @@
                 href="https://github.com/1efferson/YouTube_Downloader"
                 class="project-github"
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <i class="fab fa-github"></i> View on GitHub
               </a>
@@ -497,7 +555,7 @@
       <!-- Contact Section -->
       <section id="contact" class="contact-container">
         <div class="contact-info">
-          <h1 class="contact-title">Contact Me</h1>
+          <h2 class="contact-title">Contact Me</h2>
           <div class="contact-details">
             <div class="detail-item">
               <i class="fas fa-envelope"></i>
@@ -505,14 +563,16 @@
             </div>
             <div class="detail-item">
               <i class="fas fa-phone"></i>
-              <span>+233 54 146 6245</span>
+              <button class="reveal-phone-btn" id="phoneRevealBtn" onclick="showPhone()">
+                <i class="fas fa-lock"></i> Click to reveal
+              </button>
             </div>
           </div>
           <div class="social-media">
-            <a href="https://github.com/1efferson" aria-label="GitHub"
+            <a href="https://github.com/1efferson" aria-label="GitHub" target="_blank" rel="noopener noreferrer"
               ><i class="fab fa-github"></i
             ></a>
-            <a href="https://www.linkedin.com/in/jefferson-ampadu-41497b1b6/" aria-label="LinkedIn"
+            <a href="https://www.linkedin.com/in/jefferson-ampadu-41497b1b6/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"
               ><i class="fab fa-linkedin-in"></i
             ></a>
           </div>
@@ -556,15 +616,21 @@
 
       <footer class="follow-bar">
         <div class="socials">
-          <a href="https://github.com/1efferson" aria-label="GitHub"
+          <a href="https://github.com/1efferson" aria-label="GitHub" target="_blank" rel="noopener noreferrer"
             ><i class="fab fa-github"></i
           ></a>
-          <a href="https://www.linkedin.com/in/jefferson-ampadu-41497b1b6/" aria-label="LinkedIn"
+          <a href="https://www.linkedin.com/in/jefferson-ampadu-41497b1b6/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"
             ><i class="fab fa-linkedin-in"></i
           ></a>
         </div>
       </footer>
     </div>
+
+    <script>
+      function showPhone() {
+        document.getElementById('phoneRevealBtn').outerHTML = '<span>+233 54 146 6245</span>';
+      }
+    </script>
 
     <!-- JS Libraries -->
     <script type="importmap">
