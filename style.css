@@ -296,20 +296,7 @@ header {
   flex-shrink: 0;
 }
 
-/* Dashed orbit ring */
-.tech-orbit::before {
-  content: '';
-  position: absolute;
-  width: 336px;
-  height: 336px;
-  border-radius: 50%;
-  border: 1px dashed rgba(0, 124, 240, 0.2);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-
+/* Profile photo — absolutely centred, always on top */
 .profile-container {
   position: absolute;
   width: 200px;
@@ -330,9 +317,34 @@ header {
   object-fit: cover;
 }
 
-/* GSAP rotates the wrapper around the centre; icon counter-rotates to stay upright */
+/*
+  CSS orbit — .tech-orbit is a zero-size div anchored at the photo centre.
+  It spins, carrying all .orbit-wrapper arms with it.
+  Each .orbit-wrapper arm points at its icon's angle (--i * 45deg) and
+  extends outward by the orbit radius.
+  Each .tech-icon counter-rotates so it stays upright.
+*/
+.tech-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 3;
+  animation: orbit-spin 22s linear infinite;
+}
+
+@keyframes orbit-spin {
+  to { transform: rotate(360deg); }
+}
+
 .orbit-wrapper {
   position: absolute;
+  top: 0;
+  left: 0;
+  /* rotate to icon's slot, then translate outward, then re-centre the 48px icon */
+  transform: rotate(calc(var(--i) * 45deg)) translateX(155px) translate(-24px, -24px);
+  opacity: 0; /* GSAP fades in on page load */
 }
 
 .tech-icon {
@@ -348,6 +360,13 @@ header {
   font-size: 1.4rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   cursor: default;
+  /* cancel slot angle + continuously counter-rotate to stay upright */
+  animation: counter-spin 22s linear infinite;
+}
+
+@keyframes counter-spin {
+  from { transform: rotate(calc(var(--i) * -45deg)); }
+  to   { transform: rotate(calc(var(--i) * -45deg - 360deg)); }
 }
 
 /* Tooltip */
@@ -371,9 +390,7 @@ header {
   transition: opacity 0.2s ease;
   z-index: 10;
 }
-.tech-icon:hover::after {
-  opacity: 1;
-}
+.tech-icon:hover::after { opacity: 1; }
 
 .tech-icon .fa-python   { color: #3776ab; }
 .tech-icon .fa-html5    { color: #e34f26; }
@@ -433,24 +450,23 @@ header {
 
   /* Scale orbit down on mobile */
   .skills-showcase {
-    width: 280px;
-    height: 280px;
-  }
-
-  .tech-orbit::before {
-    width: 248px;
-    height: 248px;
+    width: 270px;
+    height: 270px;
   }
 
   .profile-container {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
+  }
+
+  .orbit-wrapper {
+    transform: rotate(calc(var(--i) * 45deg)) translateX(108px) translate(-20px, -20px);
   }
 
   .tech-icon {
     width: 40px;
     height: 40px;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
   }
 
   header {

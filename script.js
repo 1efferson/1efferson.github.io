@@ -136,17 +136,8 @@ function initGSAP() {
   // Register the ScrollTrigger plugin so scroll-based animations work
   gsap.registerPlugin(ScrollTrigger);
 
-  // Tech Orbit Animation
-  const wrappers = gsap.utils.toArray(".orbit-wrapper");
-  const icons    = gsap.utils.toArray(".tech-icon");
-  const orbitRadius = window.innerWidth < 768 ? 110 : 155;
-  const duration = 22;
-
-  gsap.set(wrappers, {
-    x: (i) => orbitRadius * Math.cos(i * ((Math.PI * 2) / wrappers.length)),
-    y: (i) => orbitRadius * Math.sin(i * ((Math.PI * 2) / wrappers.length)),
-    scale: 0,
-  });
+  // CSS handles all orbit rotation — GSAP only manages the entrance fade-in
+  // (orbit-wrapper opacity starts at 0 in CSS)
 
   // Main Page Load Animation Timeline
   gsap.set(".hero-text .line", { y: "100%" });
@@ -177,34 +168,10 @@ function initGSAP() {
     .to(
       ".orbit-wrapper",
       {
-        scale: 1,
+        opacity: 1,
         stagger: 0.1,
-        duration: 0.8,
-        onComplete: () => {
-          // Orbit the wrappers around the centre
-          gsap.to(wrappers, {
-            rotation: 360,
-            transformOrigin: `-${orbitRadius}px 0px`,
-            duration: duration,
-            repeat: -1,
-            ease: "none",
-            stagger: {
-              each: duration / wrappers.length,
-              repeat: -1,
-            },
-          });
-
-          // Counter-rotate each icon so they stay upright as they orbit
-          gsap.to(icons, {
-            rotation: -360,
-            duration: duration,
-            repeat: -1,
-            ease: "none",
-          });
-
-          // Initialize timeline animations AFTER orbit is set up
-          initTimelineAnimations();
-        },
+        duration: 0.6,
+        onComplete: initTimelineAnimations,
       },
       "-=0.8"
     )
