@@ -333,9 +333,11 @@ header {
 .tech-icon .fa-css3-alt {
   color: #1572b6;
 }
-.tech-icon .fa-js {
-  color: #f7df1e;
-}
+.tech-icon .fa-js       { color: #f7df1e; }
+.tech-icon .fa-docker   { color: #2496ed; }
+.tech-icon .fa-database { color: #336791; }
+.tech-icon .fa-server   { color: var(--accent); }
+.tech-icon .fa-git-alt  { color: #f05032; }
 
 /* Footer */
 .follow-bar {
@@ -871,6 +873,78 @@ html {
   color: var(--accent);
   width: 20px;
   text-align: center;
+}
+
+/* Services Section */
+.services-section {
+  padding: 6rem 4%;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.services-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 3.5rem;
+  background: linear-gradient(to right, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.service-card {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: left;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(0, 124, 240, 0.35);
+  box-shadow: 0 12px 32px rgba(0, 124, 240, 0.12);
+}
+
+.service-icon {
+  width: 52px;
+  height: 52px;
+  background: rgba(0, 124, 240, 0.1);
+  border: 1px solid rgba(0, 124, 240, 0.25);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.service-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.service-card p {
+  font-size: 0.92rem;
+  color: var(--light-gray);
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Experiences Section */

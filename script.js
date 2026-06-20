@@ -138,7 +138,7 @@ function initGSAP() {
 
   // Tech Orbit Animation (unchanged)
   const icons = gsap.utils.toArray(".tech-icon");
-  const orbitRadius = window.innerWidth < 768 ? 80 : 110;
+  const orbitRadius = window.innerWidth < 768 ? 90 : 130;
   const duration = 20;
 
   gsap.set(icons, {
