@@ -284,8 +284,18 @@ header {
   100% { transform: translateY(0); opacity: 0; }
 }
 
-/* Skills Showcase */
+/*
+  Saturn-style tech orbit.
+  --tilt  : how the ring plane is tipped (0deg = flat circle facing us,
+            90deg = perfectly edge-on). ~66deg gives an open Saturn ellipse.
+  --radius: ring radius from the photo centre.
+  The scene shares one preserve-3d space so the photo (at z=0) occludes the
+  icons at the BACK of the ring and is overlapped by icons at the FRONT.
+*/
 .skills-showcase {
+  --tilt: 66deg;
+  --radius: 165px;
+  --orbit-time: 24s;
   position: relative;
   margin-top: 5vh;
   width: 380px;
@@ -294,9 +304,11 @@ header {
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
-/* Profile photo — absolutely centred, always on top */
+/* Profile photo — the "planet", centred at z=0, facing the camera */
 .profile-container {
   position: absolute;
   width: 200px;
@@ -308,7 +320,6 @@ header {
   overflow: hidden;
   border: 3px solid rgba(0, 124, 240, 0.4);
   box-shadow: 0 0 35px rgba(0, 124, 240, 0.18), 0 10px 30px rgba(0, 0, 0, 0.4);
-  z-index: 2;
 }
 
 .profile-image {
@@ -318,11 +329,8 @@ header {
 }
 
 /*
-  CSS orbit — .tech-orbit is a zero-size div anchored at the photo centre.
-  It spins, carrying all .orbit-wrapper arms with it.
-  Each .orbit-wrapper arm points at its icon's angle (--i * 45deg) and
-  extends outward by the orbit radius.
-  Each .tech-icon counter-rotates so it stays upright.
+  .tech-orbit is the tilted ring plane. It sits flat (tilted by --tilt) and
+  spins around its own normal axis, carrying every icon arm with it.
 */
 .tech-orbit {
   position: absolute;
@@ -330,25 +338,28 @@ header {
   left: 50%;
   width: 0;
   height: 0;
-  z-index: 3;
-  animation: orbit-spin 22s linear infinite;
+  transform-style: preserve-3d;
+  animation: ring-spin var(--orbit-time) linear infinite;
 }
 
-@keyframes orbit-spin {
-  to { transform: rotate(360deg); }
+@keyframes ring-spin {
+  from { transform: rotateX(var(--tilt)) rotateZ(0deg); }
+  to   { transform: rotateX(var(--tilt)) rotateZ(360deg); }
 }
 
+/* Each arm points to its slot on the ring and extends outward by --radius */
 .orbit-wrapper {
   position: absolute;
   top: 0;
   left: 0;
-  /* rotate to icon's slot, then translate outward, then re-centre the 48px icon */
-  transform: rotate(calc(var(--i) * 45deg)) translateX(155px) translate(-24px, -24px);
-  opacity: 0; /* GSAP fades in on page load */
+  transform-style: preserve-3d;
+  transform: rotateZ(calc(var(--i) * 45deg)) translateX(var(--radius));
 }
 
 .tech-icon {
-  position: relative;
+  position: absolute;
+  top: -24px;   /* centre the 48px icon on the arm's anchor point */
+  left: -24px;
   width: 48px;
   height: 48px;
   background-color: var(--icon-bg);
@@ -360,13 +371,18 @@ header {
   font-size: 1.4rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   cursor: default;
-  /* cancel slot angle + continuously counter-rotate to stay upright */
-  animation: counter-spin 22s linear infinite;
+  opacity: 0; /* GSAP fades each icon in on page load */
+  /* billboard: undo the arm angle + ring spin + tilt so the icon faces the camera */
+  animation: icon-billboard var(--orbit-time) linear infinite;
 }
 
-@keyframes counter-spin {
-  from { transform: rotate(calc(var(--i) * -45deg)); }
-  to   { transform: rotate(calc(var(--i) * -45deg - 360deg)); }
+@keyframes icon-billboard {
+  from {
+    transform: rotateZ(calc(var(--i) * -45deg + 0deg)) rotateX(calc(-1 * var(--tilt)));
+  }
+  to {
+    transform: rotateZ(calc(var(--i) * -45deg - 360deg)) rotateX(calc(-1 * var(--tilt)));
+  }
 }
 
 /* Tooltip */
@@ -450,6 +466,7 @@ header {
 
   /* Scale orbit down on mobile */
   .skills-showcase {
+    --radius: 118px;
     width: 270px;
     height: 270px;
   }
@@ -459,11 +476,9 @@ header {
     height: 140px;
   }
 
-  .orbit-wrapper {
-    transform: rotate(calc(var(--i) * 45deg)) translateX(108px) translate(-20px, -20px);
-  }
-
   .tech-icon {
+    top: -20px;
+    left: -20px;
     width: 40px;
     height: 40px;
     font-size: 1.1rem;

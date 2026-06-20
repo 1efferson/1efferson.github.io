@@ -166,7 +166,7 @@ function initGSAP() {
     .to(".hero-ctas", { opacity: 1, y: 0, duration: 0.8 }, "-=0.5")
     .to(".profile-image", { opacity: 1, duration: 1 }, "-=0.7")
     .to(
-      ".orbit-wrapper",
+      ".tech-icon",
       {
         opacity: 1,
         stagger: 0.1,
