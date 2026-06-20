@@ -282,6 +282,33 @@ function initActiveNav() {
   sections.forEach((s) => observer.observe(s));
 }
 
+// --- 7. STATS COUNT-UP ---
+function initStatsCountUp() {
+  const numbers = document.querySelectorAll(".stat-number");
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = +el.dataset.target;
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const ease = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(ease * target);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    },
+    { threshold: 0.6 }
+  );
+  numbers.forEach((n) => observer.observe(n));
+}
+
 // --- INITIALIZE EVERYTHING ---
 document.addEventListener("DOMContentLoaded", () => {
   initThreeJS();
@@ -289,6 +316,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initGSAP();
   initHamburger();
   initActiveNav();
+  initStatsCountUp();
 
   // Refresh ScrollTrigger after all animations are set up
   ScrollTrigger.addEventListener("refresh", () => {

@@ -53,11 +53,10 @@
     <link rel="apple-touch-icon" href="assets/favicon1.ico">
 
 
-    <!-- Font Awesome for Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
+    <!-- Font Awesome — only the subsets we use (solid + brands), skips regular/light/thin/duotone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/fontawesome.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/solid.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/brands.min.css" crossorigin="anonymous" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
@@ -121,9 +120,12 @@
         <div class="skills-showcase">
           <div class="profile-container">
             <img
-              src="assets/photo.jpeg"
+              src="assets/photo.webp"
               alt="Jefferson Ampadu"
               class="profile-image"
+              fetchpriority="high"
+              width="400"
+              height="400"
             />
           </div>
 
@@ -150,6 +152,32 @@
           <span>Scroll</span>
         </div>
       </main>
+
+      <!-- Stats Bar -->
+      <section class="stats-bar" aria-label="Key achievements">
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="6">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Projects Shipped</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="300">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Active Users</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-number-wrap">
+              <span class="stat-number" data-target="2">0</span><span class="stat-suffix">+</span>
+            </div>
+            <span class="stat-label">Years Experience</span>
+          </div>
+        </div>
+      </section>
 
       <!-- About Me Section -->
       <section id="about" class="about-section">
@@ -316,18 +344,21 @@
             <div class="project-card">
               <div class="project-image">
                 <img
-                  src="assets/qr_attendance.png"
+                  src="assets/qr_attendance.webp"
                   alt="QR Attend - QR-based attendance system"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="project-content">
                 <h3>QR Attend</h3>
                 <p>
-                  QR-code based attendance platform with passkey (WebAuthn) and
-                  Google sign-in, real-time check-ins, scheduled push reminders,
-                  and automated Google Sheets export. Runs on a Celery + Redis
-                  async stack as an installable PWA. Actively used by
-                  <strong>300+ users</strong>.
+                  Attendance that used to mean paper registers and 10-minute
+                  manual entry now takes under 30 seconds —
+                  <strong>deployed to 300+ active users</strong>. Built with
+                  WebAuthn passkey auth, real-time QR check-ins, scheduled push
+                  reminders, automated Google Sheets export, and a Celery +
+                  Redis async stack. Ships as an installable PWA.
                 </p>
                 <div class="project-tech">
                   <span>Flask</span>
@@ -365,14 +396,12 @@
               <div class="project-content">
                 <h3>NetDiag — Network Diagnostic Platform</h3>
                 <p>
-                  Full-stack IT ops tool for monitoring and diagnosing network
-                  health across Windows, macOS, and Linux. Lightweight agents
-                  collect IP/DNS/MAC/ARP data and run subnet scans via nmap,
-                  shipping reports to a FastAPI backend. Uses
-                  <strong>Claude AI</strong> to generate plain-English fault
-                  explanations. Ops console lets admins approve devices,
-                  view per-machine diagnostics, and detect isolated machines
-                  via peer correlation.
+                  Replaced hours of manual CLI network debugging with a
+                  5-minute diagnostic loop. Agents collect IP/DNS/ARP data and
+                  run nmap subnet scans across Windows, macOS, and Linux — then
+                  <strong>Claude AI</strong> turns raw output into plain-English
+                  fault explanations. Admins spot silent or isolated machines
+                  across an entire fleet in a single dashboard view.
                 </p>
                 <div class="project-tech">
                   <span>Python</span>
@@ -398,16 +427,19 @@
             <div class="project-card">
               <div class="project-image">
                 <img
-                  src="assets/code-lms.png"
+                  src="assets/code-lms.webp"
                   alt="Code-LMS Platform"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div class="project-content">
                 <h3>Code-LMS Platform</h3>
                 <p>
-                  Video-based learning management system built with Flask, featuring
-                  course management, video delivery, role-based access control,
-                  messaging, and secure authentication.
+                  A production-grade LMS built from scratch — no Udemy, no
+                  Teachable. Course creators get full ownership: video delivery,
+                  role-based access, student messaging, and secure auth all
+                  under one Flask roof, with zero platform dependency.
                 </p>
                 <div class="project-tech">
                   <span>Flask</span>
@@ -431,15 +463,18 @@
           <div class="project-card">
             <div class="project-image">
               <img
-                src="assets/inventory_management.png"
+                src="assets/inventory_management.webp"
                 alt="Inventory System"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="project-content">
               <h3>Inventory Management System</h3>
               <p>
-                Full-stack inventory solution with Flask featuring tracking,
-                reporting, and analytics capabilities.
+                Replaced spreadsheet-based stock tracking with a real-time
+                system — live inventory levels, low-stock visibility, and
+                exportable analytics reports in a single Flask application.
               </p>
               <div class="project-tech">
                 <span>Flask</span>
@@ -463,15 +498,19 @@
           <div class="project-card">
             <div class="project-image">
               <img
-                src="assets/Map_search_functionality.png"
-                alt="Weather App"
+                src="assets/Map_search_functionality.webp"
+                alt="Voice-Enabled Weather App"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="project-content">
               <h3>Voice-Enabled Weather App</h3>
               <p>
-                Interactive weather application with voice recognition and map
-                search functionality.
+                Hands-free weather lookup — speak a city name or search on an
+                interactive Mapbox map to get live conditions instantly.
+                Demonstrates Web Speech API and geolocation in vanilla JS with
+                no framework dependency.
               </p>
               <div class="project-tech">
                 <span>JavaScript</span>
@@ -492,13 +531,14 @@
           <!-- Project 3 -->
           <div class="project-card">
             <div class="project-image">
-              <img src="assets/e_learning.jpg" alt="E-Library" />
+              <img src="assets/e_learning.webp" alt="E-Library" loading="lazy" decoding="async" />
             </div>
             <div class="project-content">
               <h3>E-Library Platform</h3>
               <p>
-                Digital library system with user authentication, book
-                management, and search features.
+                A Firebase-backed digital library with secure auth, catalogue
+                management, and book search — built for organised access to
+                curated collections without a third-party library platform.
               </p>
               <div class="project-tech">
                 <span>HTML/CSS</span>
@@ -522,14 +562,19 @@
            <div class="project-card">
             <div class="project-image">
               <img
-                src="assets/yt.png"
-                alt="YouTube Video downloader"
+                src="assets/yt.webp"
+                alt="YouTube Video Downloader"
+                loading="lazy"
+                decoding="async"
               />
             </div>
             <div class="project-content">
-              <h3>Web based YouTube Video downloader</h3>
+              <h3>Web-Based YouTube Downloader</h3>
               <p>
-                Built a sleek YouTube downloader powered by yt-dlp, enabling fast, reliable downloads of public videos with a simple, user-friendly interface.
+                Self-hosted alternative to ad-laden online converters — paste a
+                URL, pick a format, download in seconds. A clean Flask wrapper
+                over yt-dlp with a distraction-free UI and no rate-limiting
+                middlemen.
               </p>
               <div class="project-tech">
                 <span>Flask</span>
